@@ -4,8 +4,6 @@ import algorithm.data.Categoria;
 import algorithm.data.Obstaculo;
 import algorithm.data.Relacion;
 import org.apache.commons.lang3.tuple.Pair;
-import org.uma.jmetal.solution.integersolution.IntegerSolution;
-import org.uma.jmetal.solution.integersolution.impl.DefaultIntegerSolution;
 
 import java.util.*;
 
@@ -125,21 +123,6 @@ public class Greedy {
 
         for (int i = 0; i < solution.getNumberOfVariables(); i++) {
             bounds.add(Pair.of(0, obstaculos.size() - 1));
-        }
-
-        return solution;
-    }
-
-    private static IntegerSolution getSolution(List<Obstaculo> obstaculos, int numberOfVariables, List<Integer> variables) {
-        List<Pair<Integer, Integer>> bounds = new ArrayList<>();
-        for (int i = 0; i < numberOfVariables; i++) {
-            bounds.add(Pair.of(0, obstaculos.size() - 1));
-        }
-
-        IntegerSolution solution = new DefaultIntegerSolution(bounds, 1);
-
-        for (int i = 0; i < variables.size(); i++) {
-            solution.setVariable(i, variables.get(i));
         }
 
         return solution;

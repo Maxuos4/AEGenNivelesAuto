@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+//Experimento para el mejor fitness por generacion
 public class BestGenerationExperimentRunner {
     private static final int tiempoTotal = 600;
     private static final int populationSize = 500;
@@ -28,7 +29,7 @@ public class BestGenerationExperimentRunner {
 
                 algorithm.run();
 
-                // Recuperar los resultados de fitness por generación
+                // Recupero los resultados de fitness por generación
                 List<Double> bestFitnessPerGeneration = algorithm.getBestFitnessPerGeneration();
 
                 int generationCount = 0;

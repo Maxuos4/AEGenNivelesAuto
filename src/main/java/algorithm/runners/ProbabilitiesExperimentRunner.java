@@ -17,7 +17,7 @@ public class ProbabilitiesExperimentRunner extends AbstractAlgorithmRunner {
 
     private static final int populationSize = 300;
     private static final int generations = 250;
-    private static final int numRuns = 100; // Número de ejecuciones por configuración
+    private static final int numRuns = 100;
 
     public static void main(String[] args) {
         Random random = new Random();
@@ -25,7 +25,7 @@ public class ProbabilitiesExperimentRunner extends AbstractAlgorithmRunner {
         double[] crossoverProbabilities = {0.8, 0.9, 1.0};
         double[] mutationProbabilities = {0.1, 0.2, 0.4};
 
-        // Generar valores aleatorios para todas las corridas antes de las combinaciones de probabilidades
+        // Generar largo de nivel variable para cada corrida
         int[] tiempoTotalValues = new int[numRuns];
         for (int run = 0; run < numRuns; run++) {
             tiempoTotalValues[run] = random.nextInt(maxTiempoTotal-minTiempoTotal) + minTiempoTotal;

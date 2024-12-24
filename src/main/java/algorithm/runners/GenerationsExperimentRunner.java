@@ -11,10 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+//Experimento para calcular los resultados con distinta cantidad de generaciones
 public class GenerationsExperimentRunner extends AbstractAlgorithmRunner {
     private static final int minTiempoTotal = 600;
     private static final int maxTiempoTotal = 601;
-    private static final int numRuns = 30; // Número de ejecuciones por configuración
+    private static final int numRuns = 30;
 
     public static void main(String[] args) {
         Random random = new Random();
@@ -24,7 +25,7 @@ public class GenerationsExperimentRunner extends AbstractAlgorithmRunner {
         int populationSize = 500;
         int[] generationsArray = {500, 1000, 2500};
 
-        // Generar valores aleatorios para todas las corridas antes de las combinaciones de probabilidades
+        // Generar largo de nivel variable para cada corrida
         int[] tiempoTotalValues = new int[numRuns];
         for (int run = 0; run < numRuns; run++) {
             tiempoTotalValues[run] = random.nextInt(maxTiempoTotal - minTiempoTotal) + minTiempoTotal;
@@ -52,7 +53,6 @@ public class GenerationsExperimentRunner extends AbstractAlgorithmRunner {
                 double averageFitness = bestFitnesses.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
                 double stdDevFitness = calculateStandardDeviation(bestFitnesses);
 
-                // Escribir resultados en el archivo CSV
                 writer.append(String.format("%d;%.4f;%.4f;%.4f\n", generations, bestFitness, averageFitness, stdDevFitness));
             }
 

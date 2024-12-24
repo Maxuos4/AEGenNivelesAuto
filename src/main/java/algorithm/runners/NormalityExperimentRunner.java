@@ -14,10 +14,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class NormalityExperimentRunner extends AbstractAlgorithmRunner {
-    private static final int tiempoTotal = 600;
+    private static final int tiempoTotal = 400;
     private static final int populationSize = 500;
-    private static final int generations = 500;
-    private static final int numRuns = 50; // Repeticiones para el análisis
+    private static final int generations = 250;
+    private static final int numRuns = 50;
 
     private static final double crossoverProbability = 1.0;
     private static final double mutationProbability = 0.20;
@@ -36,19 +36,14 @@ public class NormalityExperimentRunner extends AbstractAlgorithmRunner {
                 algorithm.run();
                 IntegerSolution solution = algorithm.getResult();
 
-                double fitness = solution.getObjective(0); // Ajusta según tu implementación
+                double fitness = solution.getObjective(0);
                 fitnessValues.add(fitness);
 
-                // Escribe los resultados individuales
                 writer.append(String.format("%d,%.4f\n", run + 1, fitness));
             }
 
-            // Convertir la lista de fitness a un arreglo
             double[] fitnessArray = fitnessValues.stream().mapToDouble(Double::doubleValue).toArray();
 
-            System.out.println(Arrays.toString(fitnessArray));
-
-            // Ajustar a una distribución normal
             double mean = Arrays.stream(fitnessArray).average().orElse(0.0);
             double stdDev = calculateStandardDeviation(fitnessArray);
 
