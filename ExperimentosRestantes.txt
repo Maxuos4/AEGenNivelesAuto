@@ -1,7 +1,5 @@
 Promedio del numero de generaciones necesarias para alcanzar el mejor resultado (promedio y desviación estándar)
 
- Proveer detalles de HW y SW
-
 Tiempo que le lleva en ser un porcentaje mejor que los Greedy
 
 Para comparar entre algoritmos y/o parámetros, realizo las ejecuciones y comparo con test paramétricos (Student test, ANOVA si quiero comparar mas de uno)
@@ -11,18 +9,9 @@ Para comparar con un greedy determinista me fijo que la distancia entre el prome
 
 AJUSTE DE PARAMETROS
 
-Conjunto de instancias para ajustar parámetros debe ser distinto e independiente del utilizado para valorar el algoritmo
-
-Tamaño de población, prob de cruzamiento y prob de mutacion
-Se deben probar todas las combinaciones de los mismos
-
-Opcionales: Numero de generaciones a ejecutar, comparar operadores, métodos de penalización
-
-Primero pruebo cruzamiento(0,5 - 1) y mutacion (0,001 - 0,1) y después con el mejor resultado pruebo numero de población(50-200+)
-
+Opcionales: comparar operadores, métodos de penalización
 
 REPORTAR
-Resultados configuración paramétrica: Para cada configuración -> Mejor fitness, fitness promedio, desviación estándar
 Significancia estadística -> p-values de los tests estadisticos utilizados para comparar
 Confifuracion que obtuvo mejores resultados
 Tiempos de ejecución

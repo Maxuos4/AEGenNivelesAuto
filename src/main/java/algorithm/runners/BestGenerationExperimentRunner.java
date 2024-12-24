@@ -30,6 +30,7 @@ public class BestGenerationExperimentRunner {
 
                 // Recuperar los resultados de fitness por generación
                 List<Double> bestFitnessPerGeneration = algorithm.getBestFitnessPerGeneration();
+
                 int generationCount = 0;
                 for (Double fitness : bestFitnessPerGeneration) {
                     writer.append(String.format("%d,%d,%.4f\n", run + 1, generationCount++, fitness));
