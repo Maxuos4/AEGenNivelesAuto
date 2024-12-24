@@ -1,13 +1,6 @@
--Realizar 50 ejecuciones independientes del algoritmo
--Mejor fitness de cada ejecución
--Valor promedio y desviación estándar de los mejores fitness
--Test de normalidad? Kolmogorov-Smirnov para comprobar que es distribución normal
-
 Promedio del numero de generaciones necesarias para alcanzar el mejor resultado (promedio y desviación estándar)
 
--Análisis grafico para la evolución del fitness a lo largo de una generación
-
-Tiempo de ejecución de las ejecuciones (promedio y desviación) -> Proveer detalles de HW y SW
+ Proveer detalles de HW y SW
 
 Tiempo que le lleva en ser un porcentaje mejor que los Greedy
 

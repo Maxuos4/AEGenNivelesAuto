@@ -1,5 +1,8 @@
 package algorithm;
 
+import algorithm.data.Categoria;
+import algorithm.data.Obstaculo;
+import algorithm.data.Relacion;
 import org.apache.commons.lang3.tuple.Pair;
 import org.uma.jmetal.solution.integersolution.IntegerSolution;
 import org.uma.jmetal.solution.integersolution.impl.DefaultIntegerSolution;
@@ -66,7 +69,6 @@ public class Greedy {
             } else {
                 secuencia.addAll(relacion.getSecuencia());
             }
-            System.out.println(secuencia);
             if (!primerSecuencia)
                 secuencia.remove(0);
             for (Integer id : secuencia) {
