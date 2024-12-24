@@ -1,5 +1,8 @@
 package algorithm;
 
+import algorithm.data.Categoria;
+import algorithm.data.Obstaculo;
+import algorithm.data.Relacion;
 import org.apache.commons.lang3.tuple.Pair;
 import org.uma.jmetal.solution.integersolution.IntegerSolution;
 import org.uma.jmetal.solution.integersolution.impl.DefaultIntegerSolution;
@@ -52,7 +55,7 @@ public class Greedy {
         // Comenzar con la relación que tenga mayor modificador
         relaciones.sort(Comparator.comparingInt(Relacion::getModificador).reversed());
         List<Integer> secuencia = new ArrayList<>();
-        Relacion relacion = relaciones.getFirst();
+        Relacion relacion = relaciones.get(0);
 
         boolean primerSecuencia = true;
         do {
@@ -66,17 +69,16 @@ public class Greedy {
             } else {
                 secuencia.addAll(relacion.getSecuencia());
             }
-            System.out.println(secuencia);
             if (!primerSecuencia)
-                secuencia.removeFirst();
+                secuencia.remove(0);
             for (Integer id : secuencia) {
                 solution.addVariable(id);
                 tiempoActual += obstaculos.get(id).getTiempo();
             }
-            int ultimoObstaculoId = secuencia.getLast();
+            int ultimoObstaculoId = secuencia.get(secuencia.size() - 1);
             Obstaculo ultimoObstaculo = obstaculos.get(ultimoObstaculoId);
             relacion = relaciones.stream()
-                    .filter(r -> r.getSecuencia().getFirst() == ultimoObstaculo.getCategoria().ordinal() || r.getSecuencia().getFirst() == ultimoObstaculoId)
+                    .filter(r -> r.getSecuencia().get(0) == ultimoObstaculo.getCategoria().ordinal() || r.getSecuencia().get(0) == ultimoObstaculoId)
                     .max(Comparator.comparingInt(Relacion::getModificador))
                     .orElseThrow(() -> new RuntimeException("No se encontró una relación válida"));
             primerSecuencia = false;

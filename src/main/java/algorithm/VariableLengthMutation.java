@@ -21,9 +21,10 @@ public class VariableLengthMutation implements MutationOperator<IntegerSolution>
     public IntegerSolution execute(IntegerSolution solution) {
         if (random.nextDouble() < mutationProbability) {
             List<Integer> variables = solution.getVariables();
-            if (random.nextBoolean() && variables.size() < maxObstacles) {
+            if (random.nextBoolean()) {
+                int index = random.nextInt(variables.size());
                 int newObstacle = random.nextInt(maxObstacles);
-                variables.add(newObstacle);
+                variables.add(index, newObstacle);
             } else if (variables.size() > 1) {
                 int indexToRemove = random.nextInt(variables.size());
                 variables.remove(indexToRemove);
