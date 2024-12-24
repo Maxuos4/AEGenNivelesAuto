@@ -1,7 +1,6 @@
 package algorithm.runners;
 
-import algorithm.AlgorithmFactory;
-import algorithm.LoggingGeneticAlgorithm;
+import algorithm.*;
 import org.uma.jmetal.solution.integersolution.IntegerSolution;
 import org.uma.jmetal.util.AbstractAlgorithmRunner;
 
@@ -11,24 +10,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+//Experimento para medir la poblacion optima
 public class PopulationSizeExperimentRunner extends AbstractAlgorithmRunner {
     private static final int minTiempoTotal = 600;
     private static final int maxTiempoTotal = 601;
-    private static final int generations = 100;
-    private static final int numRuns = 5; // Número de ejecuciones por configuración
+    private static final int generations = 500;
+    private static final int numRuns = 50;
 
     public static void main(String[] args) {
         Random random = new Random();
 
         double crossoverProbability = 1.0;
         double mutationProbability = 0.2;
-        int[] populationSizes = {5000, 10000, 25000, 50000};
+        int[] populationSizes = {500};
 
-        // Generar valores aleatorios para todas las corridas antes de las combinaciones de probabilidades
+        // Generar largo de nivel variable para cada corrida
         int[] tiempoTotalValues = new int[numRuns];
         for (int run = 0; run < numRuns; run++) {
             tiempoTotalValues[run] = random.nextInt(maxTiempoTotal - minTiempoTotal) + minTiempoTotal;
         }
+
+        double totalVariedad = 0.0;
 
         try (FileWriter writer = new FileWriter("population_size_experiment_results.csv")) {
             writer.append("PopulationSize;AvgFitness;StdDevFitness;AvgExecutionTime\n");
@@ -49,6 +51,9 @@ public class PopulationSizeExperimentRunner extends AbstractAlgorithmRunner {
 
                     IntegerSolution solution = algorithm.getResult();
 
+                    double variedad = NivelesPorDificultad.cantidadObstaculosDistintos(solution.getVariables());
+                    totalVariedad += variedad;
+
                     // Registrar el fitness de la mejor solución
                     bestFitnesses.add(solution.getObjective(0) * -1);
                 }
@@ -57,6 +62,10 @@ public class PopulationSizeExperimentRunner extends AbstractAlgorithmRunner {
                 double averageFitness = bestFitnesses.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
                 double stdDevFitness = calculateStandardDeviation(bestFitnesses);
                 double averageExecutionTime = executionTimes.stream().mapToLong(Long::longValue).average().orElse(0.0);
+
+                double averageVariedad = totalVariedad / numRuns;
+
+                System.out.println(averageVariedad);
 
                 // Escribir resultados en el archivo CSV
                 writer.append(String.format("%d;%.4f;%.4f;%.2f\n", populationSize, averageFitness, stdDevFitness, averageExecutionTime));

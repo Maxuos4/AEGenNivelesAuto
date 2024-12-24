@@ -19,7 +19,6 @@ public class NivelesPorDificultadRunner extends AbstractAlgorithmRunner {
     private static final int generations = 250;
 
     public static void main(String[] args) {
-        // Crear la instancia del problema
         NivelesPorDificultad problem = new NivelesPorDificultad(tiempoTotal);
         List<Obstaculo> obstaculos = problem.getObstaculos();
         List<Relacion> relaciones = problem.getRelaciones();
@@ -32,7 +31,6 @@ public class NivelesPorDificultadRunner extends AbstractAlgorithmRunner {
         long endTime = System.currentTimeMillis();
         long executionTimeAE = endTime - startTime;
 
-        // Obtener la mejor solución
         IntegerSolution solution = algorithm.getResult();
 
         List<IntegerSolution> population = new ArrayList<>(1);

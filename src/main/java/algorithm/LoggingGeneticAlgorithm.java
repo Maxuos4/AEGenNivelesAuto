@@ -11,6 +11,7 @@ import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 import java.util.ArrayList;
 import java.util.List;
 
+//Extension del generador de algoritmos que nos permite guardar valores por generacion
 public class LoggingGeneticAlgorithm<S extends Solution<?>> extends GenerationalGeneticAlgorithm<S> {
     private final List<Double> bestFitnessPerGeneration = new ArrayList<>();
 
